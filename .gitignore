@@ -1,0 +1,6 @@
+output/*
+input/*
+working-space/*
+!output/.gitkeep
+!input/.gitkeep
+!working-space/.gitkeep
