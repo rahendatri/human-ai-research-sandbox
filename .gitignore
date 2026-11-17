@@ -1,6 +1,4 @@
-output/*
 input/*
-working-space/*
-!output/.gitkeep
+workspace/*
 !input/.gitkeep
-!working-space/.gitkeep
+!workspace/.gitkeep
