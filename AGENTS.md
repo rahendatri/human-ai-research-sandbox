@@ -31,7 +31,7 @@ Contains three kinds of files, distinguished by a filename prefix:
 Rules by prefix:
 - **`human-`**: agents MUST NOT modify without explicit permission.
 - **`co-`**: the agent may edit freely within the current conversation's direction; still ask before large rewrites.
-- **`ai-`**: the human does not edit these directly — feedback flows through conversation, and the agent regenerates or updates the file. Agents may create and iterate across sessions; deliverables are living artifacts, not frozen on first write. Prefer self-contained formats (standalone HTML, single markdown, single spreadsheet). Before a large overwrite, offer a quick "replace or keep a new version alongside?" check.
+- **`ai-`**: the human does not edit these directly — feedback flows through conversation, and the agent regenerates or updates the file. Agents may create and iterate across sessions; deliverables are living artifacts, not frozen on first write. **Default format: standalone visual HTML** (self-contained, no external assets, with layout, typography, and charts/tables incorporated inline — designed for reading, not a wall of text). Use another format only when the content genuinely can't be expressed as HTML — see File conventions for the two allowed exceptions. Before a large overwrite, offer a quick "replace or keep a new version alongside?" check.
 
 Cross-cutting conventions:
 - **Unprefixed files are treated as `human-` by default.** Nothing breaks if a file slips through without a prefix — the agent errs on the side of not touching it.
@@ -46,11 +46,15 @@ Cross-cutting conventions:
 
 ## File conventions
 
-- **Notes, reports, analyses** → Markdown (`.md`).
-- **Structured data, comparisons, benchmarks** → Spreadsheet (`.xlsx`) or CSV.
-- **Dashboards, visual deliverables** → Standalone HTML (self-contained, no external assets).
-- **Source references** → keep original filename from `input/` when citing.
-- Filenames: lowercase, hyphen-separated, human-readable, with the authorship prefix first (`ai-vendor-comparison.md`, not `vc1.md`).
+Formats depend on the authorship prefix.
+
+**`ai-` files** default to **standalone visual HTML** — self-contained, no external assets, with dashboards, charts, tables, layout, and typography incorporated inline. Only two exceptions are allowed:
+- **`.xlsx` / CSV** — when the human needs to pivot, sort, filter, or paste the data elsewhere. HTML is read-only; a spreadsheet is a working tool.
+- **Original filename from `input/`** — when the `ai-` file is just citing or passing through a source reference, keep the source's filename rather than wrapping it in HTML.
+
+**`human-` and `co-` files** keep flexibility — pick whatever fits the conversation (markdown for notes/reports/analyses, spreadsheet for structured data, HTML when useful).
+
+**Filenames**: lowercase, hyphen-separated, human-readable, with the authorship prefix first (`ai-vendor-comparison.html`, not `vc1.html`).
 
 ## Operating rules for agents
 
